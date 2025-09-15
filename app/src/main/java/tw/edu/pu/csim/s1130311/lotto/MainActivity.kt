@@ -12,10 +12,15 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import tw.edu.pu.csim.s1130311.lotto.ui.theme.LottoTheme
+import androidx.compose.runtime.setValue // 引入 setValue
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +40,10 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Play(modifier: Modifier = Modifier) {
-    var lucky = (1..100).random()
+    var lucky by remember {
+        mutableStateOf((1..100).random())
+    }
+
     Column(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
